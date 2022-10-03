@@ -47,7 +47,7 @@ const Hero = () => {
         30-minute demo we will cover:
       </p>
       <ul className='hero_list'>
-        <li className='hero_list_item'>Our platform's zero-touch approach</li>
+        <li className='hero_list_item'>Our platform zero-touch approach</li>
         <li className='hero_list_item'>
           Autonomously classify your information
         </li>
