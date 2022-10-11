@@ -13,6 +13,7 @@ const Wrapper = styled.section`
       color: #f2f2f2;
       font-size: 3.2rem;
       line-height: 1.25;
+      font-weight: 700;
     }
     &_subtitle {
       color: #00c0ec;
@@ -21,10 +22,11 @@ const Wrapper = styled.section`
     }
     &_list {
       display: grid;
-      gap: 1.6rem;
+      gap: 0.7rem;
       color: #f2f2f2;
       line-height: 2;
       font-size: 1.8rem;
+      padding-left: 4rem;
     }
   }
 `;
@@ -34,8 +36,8 @@ const Hero = () => {
     <Wrapper>
       <Image
         src='https://lps.cognni.ai/hs-fs/hubfs/Walkthrough-Demo-1.png?width=144&height=135&name=Walkthrough-Demo-1.png'
-        width={144}
-        height={135}
+        width={96}
+        height={90}
         className='hero_logo'
         alt='LOGO'
       />
