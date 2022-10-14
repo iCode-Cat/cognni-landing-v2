@@ -67,7 +67,7 @@ const Home: NextPage = ({ sanity, heroComponent, cardComponent }: any) => {
               <Submit />
             </HeroWrapper>
           </Container>
-          <Card />
+          <Card cardComponent={cardComponent} />
         </Wrapper>
         <FooterComp />
       </main>

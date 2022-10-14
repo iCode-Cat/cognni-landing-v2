@@ -57,32 +57,33 @@ export const ButtonStyle = styled.button`
   height: 60px;
 `;
 
-const Card = () => {
+const Card = ({ cardComponent }: any) => {
   return (
     <CardStyle>
       <Container>
-        <p className='card_title'>
-          Autonomous assessment, recommendations, and mitigation. Cognni saves
-          you 100s of hours of work every month.
-        </p>
+        <p className='card_title'>{cardComponent.title}</p>
 
         <div className='card_media'>
           <iframe
-            src='https://www.youtube.com/embed/NswTFrGI7ak?feature=oembed'
+            src={cardComponent.iframeVideo}
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             allowFullScreen
             title="What Cognni does - InfoSec's Only Information Intelligence Platform"
             className='oembed_container_iframe'
           ></iframe>
           <Image
-            src='https://lps.cognni.ai/hs-fs/hubfs/Microsoft-Badge-1.png?width=762&name=Microsoft-Badge-1.png'
+            src={cardComponent.image1.asset.url}
             width={830}
             height={540}
             alt='Microsoft Badge'
             objectFit='contain'
           />
         </div>
-        <ButtonStyle className='card_cta'>Schedule a Demo</ButtonStyle>
+        <a target='_blank' href={cardComponent.buttonLink} rel='noreferrer'>
+          <ButtonStyle className='card_cta'>
+            {cardComponent.buttonText}
+          </ButtonStyle>
+        </a>
       </Container>
     </CardStyle>
   );
