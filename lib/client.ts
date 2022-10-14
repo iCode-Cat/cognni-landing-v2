@@ -1,26 +1,12 @@
-// lib/config.js
-export const config = {
-  /**
-   * Find your project ID and dataset in `sanity.json` in your studio project.
-   * These are considered “public”, but you can use environment variables
-   * if you want differ between local dev and production.
-   *
-   * https://nextjs.org/docs/basic-features/environment-variables
-   **/
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  apiVersion: '2021-10-21', // Learn more: https://www.sanity.io/docs/api-versioning
-  /**
-   * Set useCdn to `false` if your application require the freshest possible
-   * data always (potentially slightly slower and a bit more expensive).
-   * Authenticated request (like preview) will always bypass the CDN
-   **/
-  useCdn: process.env.NODE_ENV === 'production',
+const sanityClient = require('@sanity/client');
+// Sanity Settings
+const client = sanityClient({
+  projectId: 's79gr8k9',
+  dataset: 'production',
+  apiVersion: '2022-09-08', // use current UTC date - see "specifying API version"!
+  token:
+    'skTkODWRHUiytpYMHD1G0mooYpwjuihssLk3naSpeBgzZ5u5lyCufY72WY82hW8kVoEq0DF5aO7z29qsuT1n8rwSiUqGlwl7P38AYgC5ORo2coNOzcBIkPBl9PxIeYRKzQ81P2vLLG9dpxQoEbGZOu15j0q0V7qD7MaAtLPDLcZOL57ZDoWE', // or leave blank for unauthenticated usage
+  useCdn: false, // `false` if you want to ensure fresh data
+});
 
-  /**
-   * OPTIONAL config to enable authentication with custom token
-   * You might need this if you host the preview on a different url than Sanity Studio
-   */
-  token: '<sanity access token>',
-  // EventSource: /* provide your own event source implementation. Required in browsers to support the above token parameter. */
-};
+export default client;

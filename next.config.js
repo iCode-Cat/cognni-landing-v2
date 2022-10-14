@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['lps.cognni.ai'],
+    domains: ['lps.cognni.ai', 'cdn.sanity.io'],
   },
 };
 

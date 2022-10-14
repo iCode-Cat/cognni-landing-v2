@@ -31,34 +31,25 @@ const Wrapper = styled.section`
   }
 `;
 
-const Hero = () => {
+const Hero = ({ heroComponent }: any) => {
   return (
     <Wrapper>
       <Image
-        src='https://lps.cognni.ai/hs-fs/hubfs/Walkthrough-Demo-1.png?width=144&height=135&name=Walkthrough-Demo-1.png'
+        src={heroComponent.image.asset.url}
         width={96}
         height={90}
         className='hero_logo'
         alt='LOGO'
+        objectFit='contain'
       />
-      <h1 className='hero_title'>
-        See and understand how to autonomously mitigate information risks.
-      </h1>
-      <p className='hero_subtitle'>
-        Schedule a walkthrough demo of our award-winning platform. In this
-        30-minute demo we will cover:
-      </p>
+      <h1 className='hero_title'>{heroComponent.title}</h1>
+      <p className='hero_subtitle'>{heroComponent.paragraph}</p>
       <ul className='hero_list'>
-        <li className='hero_list_item'>Our platform zero-touch approach</li>
-        <li className='hero_list_item'>
-          Autonomously classify your information
-        </li>
-        <li className='hero_list_item'>
-          Executive dashboards for your stakeholders
-        </li>
-        <li className='hero_list_item'>
-          How to be in complete control of the MIP automation
-        </li>
+        {heroComponent.list.map((item: any, index: number) => (
+          <li key={index} className='hero_list_item'>
+            {item.children[0].text}
+          </li>
+        ))}
       </ul>
     </Wrapper>
   );

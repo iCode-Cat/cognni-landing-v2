@@ -10,11 +10,12 @@ const SubmitStyle = styled.form`
   gap: 22px;
   background: #0096f5;
   width: 100%;
-  padding: 2.5rem 4rem;
+  padding: 4rem;
   border-radius: 8px;
   justify-self: center;
   @media (min-width: 40em) {
-    max-width: 604px;
+    max-width: 500px;
+    justify-self: flex-end;
     grid-template-columns: 1fr 1fr;
     input:nth-child(1) {
       grid-column: 1 / 2;
@@ -25,6 +26,7 @@ const SubmitStyle = styled.form`
     input,
     button {
       grid-column: 1 / 3;
+      justify-self: center;
     }
   }
 `;

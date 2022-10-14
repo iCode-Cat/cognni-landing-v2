@@ -7,10 +7,11 @@ import Header from '../components/Header';
 import Hero from '../components/Hero/Hero';
 import Submit from '../components/Submit/Submit';
 import FooterComp from '../components/Footer';
+import client from '../lib/client';
+import { CARD_QUERY, HERO_QUERY, PAGE_QUERY } from '../lib/queries';
 
 const Wrapper = styled.section`
   position: relative;
-  /* background: #082543; */
 `;
 
 const Background = styled.div`
@@ -46,7 +47,9 @@ const HeroWrapper = styled.section`
   }
 `;
 
-const Home: NextPage = () => {
+const Home: NextPage = ({ sanity, heroComponent, cardComponent }: any) => {
+  console.log(sanity);
+
   return (
     <>
       <Header />
@@ -60,7 +63,7 @@ const Home: NextPage = () => {
           <Background />
           <Container>
             <HeroWrapper>
-              <Hero />
+              <Hero heroComponent={heroComponent} />
               <Submit />
             </HeroWrapper>
           </Container>
@@ -71,5 +74,19 @@ const Home: NextPage = () => {
     </>
   );
 };
+
+export async function getServerSideProps() {
+  const sanity = (await client.fetch(PAGE_QUERY, { uuid: '1' }))[0];
+  const heroComponent = await client.fetch(HERO_QUERY);
+  const cardComponent = await client.fetch(CARD_QUERY);
+
+  return {
+    props: {
+      sanity,
+      heroComponent: sanity.heroComponent || heroComponent[0],
+      cardComponent: sanity.cardComponent || cardComponent[0],
+    },
+  };
+}
 
 export default Home;
