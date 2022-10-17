@@ -58,7 +58,7 @@ const Submit = ({ submitForm, sanity }: any) => {
   });
 
   const { runAxios, loading, error, data } = useFetch(
-    'http://localhost:3333/api/submit/save',
+    'https://test-campaign-api.herokuapp.com/api/submit/save',
     'POST',
     form
   );
