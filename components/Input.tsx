@@ -6,8 +6,9 @@ interface InputType {
   placeholder: string;
   type: React.HTMLInputTypeAttribute;
   name: string;
-  setForm?: React.Dispatch<any>;
-  form?: any;
+  setForm: React.Dispatch<any>;
+  form: any;
+  required: boolean;
 }
 
 const InputComponent = styled.input`
@@ -22,15 +23,22 @@ const InputComponent = styled.input`
   font-weight: 400;
 `;
 
-const Input = ({ placeholder, type, name, setForm, form }: InputType) => {
+const Input = ({
+  placeholder,
+  type,
+  name,
+  setForm,
+  form,
+  required,
+}: InputType) => {
   return (
     <InputComponent
-      required
+      required={required}
       onChange={(e) => {
-        // setForm({
-        //   ...form,
-        //   [name]: e.target.value,
-        // });
+        setForm({
+          ...form,
+          [name]: e.target.value,
+        });
       }}
       name={name}
       placeholder={placeholder}

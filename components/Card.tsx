@@ -55,6 +55,7 @@ export const ButtonStyle = styled.button`
   border: none;
   font-weight: 600;
   height: 60px;
+  cursor: pointer;
 `;
 
 const Card = ({ cardComponent }: any) => {
