@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useFetch } from '../../hooks/useFetch';
+import useSendEvent from '../../hooks/useSendEvent';
 import { ButtonStyle } from '../Card';
 import Input from '../Input';
 import RichContent from '../RichContent';
@@ -31,13 +32,16 @@ const SubmitStyle = styled.form`
   }
 
   .submit_rich {
-    grid-column: 1 / 3;
+    grid-column: 1 / 2;
   }
 
   @media (min-width: 40em) {
     max-width: 500px;
     justify-self: flex-end;
     grid-template-columns: 1fr 1fr;
+    .submit_rich {
+      grid-column: 1 / 3;
+    }
     input:nth-child(1) {
       grid-column: 1 / 2;
     }
@@ -57,6 +61,7 @@ const Submit = ({ submitForm, sanity }: any) => {
     campaign_id: sanity.campaignId,
   });
 
+  const { monitoringService } = useSendEvent();
   const { runAxios, loading, error, data } = useFetch(
     'https://test-campaign-api.herokuapp.com/api/submit/save',
     'POST',
@@ -66,6 +71,7 @@ const Submit = ({ submitForm, sanity }: any) => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const [loading, error, data] = await runAxios();
+    await monitoringService({ eventId: 'form_submit', data: form });
   };
 
   return (
